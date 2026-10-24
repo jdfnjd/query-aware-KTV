@@ -1,0 +1,18 @@
+{
+  "KTV-official": {
+    "url": "https://github.com/hktk07/KTV.git",
+    "commit": "d77f844a9214d8c66cc60d33395efd89273928ee"
+  },
+  "NExT-QA": {
+    "url": "https://github.com/doc-doc/NExT-QA.git",
+    "commit": "2432e9724f88ed9f40010e2989f104570a91de4e"
+  },
+  "QCA": {
+    "url": "https://github.com/hktk07/QCA.git",
+    "commit": "842fae5c46542cc0dd238224d3604bc6cd69efed"
+  },
+  "q-frame": {
+    "url": "https://github.com/xiaomi-research/q-frame.git",
+    "commit": "1b08494c1d91237d3bfdddaff561ff3fd77da2a6"
+  }
+}

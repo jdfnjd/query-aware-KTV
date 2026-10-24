@@ -1,0 +1,34 @@
+{
+  "scope": {"questions": 400, "videos": 291, "pilot_questions": 100, "additional_questions": 300, "split": "NExT-QA validation"},
+  "model": "liuhaotian/llava-v1.6-vicuna-7b",
+  "visual_budget": {"frames": 6, "projected_tokens": 936, "tokens_by_relevance_rank": [288, 144, 144, 144, 144, 72]},
+  "selection": {
+    "candidates": "All decodable frames up to 5400; otherwise integer linspace over the complete video",
+    "dino": "facebook/dinov2-large, FP32 pooler_output, short side 256 bicubic, center crop 224, ImageNet normalization",
+    "clustering": {"method": "KMeans", "init": "k-means++", "n_init": 10, "random_state": 0, "representative": "global nearest candidate to each centroid"},
+    "clip": "openai/clip-vit-large-patch14, normalized image/text embeddings, FP16",
+    "modes": {
+      "ktv6": "Fresh k=6 DINO clustering",
+      "hybrid4_neighbor": "Fresh k=4 clustering plus global CLIP maximum and nominal one-second temporal neighbor",
+      "hybrid4_top2": "Same k=4 context plus highest-scoring unselected CLIP candidates until six total",
+      "query6": "Top six CLIP candidates"
+    },
+    "neighbor_direction": "Earlier for before-only wording, later for after-only wording, otherwise higher CLIP score at the two offsets; use other side if unavailable",
+    "duplicates": "Preserve context, deduplicate, fill by decreasing CLIP score, sort by source-frame index",
+    "degenerate_clusters": "Fill repeated representatives with temporally distant unselected candidates",
+    "answer_leakage": "Selectors never read answer choices or labels"
+  },
+  "inference": {"precision": "FP16", "image_size": [336, 336], "image_aspect_ratio": "resize", "prompt": "multiple_choice_allvideo_v4", "do_sample": false, "num_beams": 1, "max_new_tokens": 128, "rope_factor": 2, "prune_mode": "cls_new_token_sim", "global_rate": 0.2},
+  "sampling": {"pilot_seed": 20260927, "subset_seed": 20260928, "method": "Proportional subtype quotas, includes fixed pilot, independent of predictions", "original_validation_csv_sha256": "ba18466c327da71e65b1581d80c8aab29762d71aede13e7d1404c30b2cb42404"},
+  "evaluation": {"invalid_answers": "Count incorrect", "parser": "Initial capital A-E, optionally preceded by opening parenthesis", "temporal_types": ["TN", "TP", "TC"], "causal_types": ["CW", "CH"], "descriptive_types": ["DC", "DL", "DO"], "TP_merge": "TN", "bootstrap": "10000 resamples clustered by video", "bootstrap_seed": 20260927, "mcnemar": "Descriptive only; question independence is not assumed for inference"},
+  "reproduction_deviations": [
+    "Released clustering script hardcodes twelve; this study follows the six-frame setting",
+    "Greedy decoding instead of inference script's sampling default",
+    "Hugging Face conversion of CLIP weights; original-package bitwise parity unverified",
+    "Degenerate-cluster fill differs from released uniform fallback",
+    "Strict answer parser differs from released heuristic",
+    "Published KTV score parity has not been established"
+  ],
+  "direct_cost_benchmark": {"videos": 8, "requests": 32, "sampling": "Candidate-count midpoint quantiles, one sorted-ID question per video", "features_reused": false, "models_resident": true, "file_caches_flushed": false, "repeats": 1, "gpu": "V100 32 GB", "memory_pool": "LLaVA, CLIP and DINO resident for every policy", "original_frame_set_matches": 32, "original_rank_matches": 30, "original_token_allocation_matches": 31, "original_answer_matches": 32},
+  "interpretation": "No established overall accuracy improvement. Temporal benefit uncertain. Additional CLIP compute makes the hybrid approximately 1.60 times slower in the small direct-cost sample."
+}

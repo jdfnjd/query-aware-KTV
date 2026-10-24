@@ -1,0 +1,22 @@
+{
+  "liuhaotian/llava-v1.6-vicuna-7b": {
+    "revision": "deae57a8c0ccb0da4c2661cc1891cc9d06503d11",
+    "weight_format": "safetensors"
+  },
+  "facebook/dinov2-large": {
+    "revision": "47b73eefe95e8d44ec3623f8890bd894b6ea2d6c",
+    "weight_format": "safetensors"
+  },
+  "openai/clip-vit-large-patch14": {
+    "revision": "32bd64288804d66eefd0ccbe215aa642df71cc41",
+    "weight_format": "safetensors"
+  },
+  "openai/clip-vit-large-patch14-336": {
+    "revision": "ce19dc912ca5cd21c8a653c79e251e808ccabcd1",
+    "weight_format": "pytorch_bin"
+  },
+  "dataset": {
+    "repo": "lmms-eval/NExTQA",
+    "revision": "a0d7729e38399da9c8a70c59aa4ad7f6996d3c00"
+  }
+}

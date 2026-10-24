@@ -1,0 +1,18 @@
+{
+  "ids": [
+    "8557532213_1",
+    "2735019707_2",
+    "4970148391_10",
+    "6727904179_6",
+    "4782722858_3",
+    "9217939684_7",
+    "3192668394_0",
+    "3158022797_6"
+  ],
+  "sampling": "eight midpoint quantiles of candidate count, one lexicographically first question per video",
+  "model_setup_s": 33.38669271301478,
+  "additional_dino_setup_s": 3.1009612288326025,
+  "scope": "resident models; no feature reuse; includes actual-frame count, decoding, required encoders, clustering, selection, prompt, generation and answer parsing",
+  "exclusions": "model loading, dataset download, result logging; OS file cache is not flushed",
+  "memory": "common resident LLaVA+CLIP+DINO pool for all modes, not minimum per-mode deployment memory"
+}

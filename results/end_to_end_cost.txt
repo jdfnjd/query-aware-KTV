@@ -1,0 +1,55 @@
+# Direct end-to-end VideoQA cost
+
+## Measurement scope
+
+Eight videos were selected at the midpoint of eight quantiles of candidate-frame count from the 291-video evaluation set. One question per video was chosen by sorted ID, independently of answer correctness. All four policies were measured once per video on the same GPU, with rotated policy order: 32 complete requests. This is a small diagnostic sample, not a runtime estimate for all 400 questions.
+
+Each synchronized wall-clock measurement starts before opening the raw video and ends after answer generation and parsing. It includes actual frame-count validation, video decoding, image preprocessing, required feature extraction, clustering where applicable, CLIP query encoding/ranking, selected-frame decoding, token pruning, prompt processing and generation. Features are recomputed for every request and never loaded from the feature cache.
+
+KTV computes DINO on candidates and CLIP on only its six representatives. Both hybrids compute DINO and CLIP on candidates. Query-only computes CLIP on candidates and skips DINO and clustering.
+
+Models are already resident, and one separate video warms the networks before timing. OS/NFS file caches are not flushed. Model initialization, downloads, queue waiting and output-file logging are excluded from request latency. Thus these are **uncached-feature end-to-end requests**, not cold-machine or fresh-process startup timings.
+
+## Measured latency
+
+| Method | Mean request | Median request | Range | Mean / KTV |
+|---|---:|---:|---:|---:|
+| KTV baseline | 31.47 s | 27.62 s | 11.74–67.36 s | 1.00× |
+| Hybrid + neighbor | 50.48 s | 43.33 s | 17.35–112.08 s | 1.60× |
+| Hybrid without neighbor | 50.79 s | 44.16 s | 16.49–112.84 s | 1.61× |
+| Six query-aware frames | 24.56 s | 21.26 s | 8.65–55.18 s | 0.78× |
+
+### Every measured video
+
+| Question ID | Candidate frames | KTV | Hybrid + neighbor | Hybrid without neighbor | Query-only |
+|---|---:|---:|---:|---:|---:|
+| 8557532213_1 | 379 | 11.74 s | 17.35 s | 16.49 s | 8.65 s |
+| 2735019707_2 | 583 | 17.52 s | 25.05 s | 26.01 s | 14.52 s |
+| 4970148391_10 | 732 | 18.28 s | 28.69 s | 30.11 s | 14.72 s |
+| 6727904179_6 | 962 | 22.94 s | 37.48 s | 37.70 s | 17.50 s |
+| 4782722858_3 | 1234 | 32.30 s | 49.17 s | 50.61 s | 25.02 s |
+| 9217939684_7 | 1660 | 36.84 s | 62.01 s | 62.05 s | 29.10 s |
+| 3192668394_0 | 2079 | 44.74 s | 72.04 s | 70.53 s | 31.78 s |
+| 3158022797_6 | 2697 | 67.36 s | 112.08 s | 112.84 s | 55.18 s |
+
+## Validity and resource accounting
+
+- Every measured request retained six distinct frames and 936 projected visual tokens.
+- Physical GPUs recorded: 1.
+- Timed LLaVA/CLIP initialization: 33.39 s; additional DINO/setup work: 3.10 s. These are separate initialization measurements, not fresh-process per-method benchmarks.
+- Maximum allocated GPU memory: 16.35 GiB. All policies share the same resident LLaVA+CLIP+DINO pool; this is not minimum standalone memory for query-only or any other policy.
+- Parity with the 400-question run: 32/32 matching selected frame sets.
+- Parity with the 400-question run: 30/32 matching token relevance ranks.
+  Differences: 2735019707_2/ktv6, 3158022797_6/ktv6.
+- Parity with the 400-question run: 32/32 matching parsed answers.
+- Per-frame token allocations match in 31/32 requests. One rank difference only swaps frames retaining the same 144-token budget; the other swaps a 72-token and a 144-token baseline allocation. Total tokens remain 936 and parsed answers are unchanged.
+
+## Limits
+
+One observation per method/video does not quantify repeat-run jitter. Other GPUs on the shared server were busy; CPU, filesystem and power contention were not controlled. A CPU-only case-strip generation job overlapped part of the first-video timing period, so those measurements may contain additional host contention. These results measure this implementation and this sample, rather than an optimized deployment or general speed ranking.
+
+The baseline uses a native six-image CLIP batch instead of dense cached CLIP embeddings. Numerical batch differences can change ties, so frame/rank/answer parity is audited above. The original accuracy results are not replaced by these timing runs.
+
+## Interpretation
+
+The neighbor hybrid costs 1.60× the baseline mean request time on these eight videos (+19.02 seconds). The unchanged six-frame/936-token budget constrains the language-model input, but does not remove dense CLIP selection overhead. Use these directly measured times instead of treating the earlier reconstructed component sums as measured end-to-end latency.

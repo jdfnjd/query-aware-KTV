@@ -1,0 +1,56 @@
+{
+  "n_videos": 8,
+  "measurements": 32,
+  "modes": {
+    "ktv6": {
+      "mean_s": 31.46511743904557,
+      "median_s": 27.619055005256087,
+      "min_s": 11.743892754428089,
+      "max_s": 67.36125021334738,
+      "peak_allocated_mib": 16743.33837890625
+    },
+    "hybrid4_neighbor": {
+      "mean_s": 50.48414241883438,
+      "median_s": 43.32865918474272,
+      "min_s": 17.352596582844853,
+      "max_s": 112.07898990623653,
+      "peak_allocated_mib": 16743.33837890625
+    },
+    "hybrid4_top2": {
+      "mean_s": 50.79270367498975,
+      "median_s": 44.15892385132611,
+      "min_s": 16.493920784443617,
+      "max_s": 112.8404646050185,
+      "peak_allocated_mib": 16743.33837890625
+    },
+    "query6": {
+      "mean_s": 24.55825863860082,
+      "median_s": 21.25685332575813,
+      "min_s": 8.652056405320764,
+      "max_s": 55.18012273404747,
+      "peak_allocated_mib": 16743.33837890625
+    }
+  },
+  "parity": {
+    "ktv6": {
+      "frames_match_original": 8,
+      "ranks_match_original": 6,
+      "answer_matches_original": 8
+    },
+    "hybrid4_neighbor": {
+      "frames_match_original": 8,
+      "ranks_match_original": 8,
+      "answer_matches_original": 8
+    },
+    "hybrid4_top2": {
+      "frames_match_original": 8,
+      "ranks_match_original": 8,
+      "answer_matches_original": 8
+    },
+    "query6": {
+      "frames_match_original": 8,
+      "ranks_match_original": 8,
+      "answer_matches_original": 8
+    }
+  }
+}

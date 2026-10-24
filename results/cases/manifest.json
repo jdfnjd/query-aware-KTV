@@ -1,0 +1,93 @@
+[
+  {
+    "id": "10127533784_1",
+    "image": "10127533784_1.jpg",
+    "type": "DO",
+    "question": "who are the people in the background supporting",
+    "review_status": "pending_visual_review"
+  },
+  {
+    "id": "11584566583_5",
+    "image": "11584566583_5.jpg",
+    "type": "DC",
+    "question": "how many people are speaking on the microphone",
+    "review_status": "pending_visual_review"
+  },
+  {
+    "id": "11681746823_7",
+    "image": "11681746823_7.jpg",
+    "type": "TN",
+    "question": "what does the baby do after the lady starts shaking her head",
+    "review_status": "pending_visual_review"
+  },
+  {
+    "id": "13884293626_8",
+    "image": "13884293626_8.jpg",
+    "type": "CH",
+    "question": "how is the lady in purple writing her notes in the video",
+    "review_status": "pending_visual_review"
+  },
+  {
+    "id": "2552130183_2",
+    "image": "2552130183_2.jpg",
+    "type": "CW",
+    "question": "why does the lady hold the baby s stomach near the end",
+    "review_status": "pending_visual_review"
+  },
+  {
+    "id": "2696280239_8",
+    "image": "2696280239_8.jpg",
+    "type": "CH",
+    "question": "how did the person in red move his arms when the bull entered",
+    "review_status": "pending_visual_review"
+  },
+  {
+    "id": "2810112808_6",
+    "image": "2810112808_6.jpg",
+    "type": "CW",
+    "question": "why does the man in red stretch his hands out near the middle of the video",
+    "review_status": "pending_visual_review"
+  },
+  {
+    "id": "2829462646_6",
+    "image": "2829462646_6.jpg",
+    "type": "TC",
+    "question": "what is the man in stripes doing in this video",
+    "review_status": "pending_visual_review"
+  },
+  {
+    "id": "2871995580_9",
+    "image": "2871995580_9.jpg",
+    "type": "CH",
+    "question": "how did the boy use the stick toy he had taken from the basket of toys",
+    "review_status": "pending_visual_review"
+  },
+  {
+    "id": "3131380536_7",
+    "image": "3131380536_7.jpg",
+    "type": "TC",
+    "question": "how did the child react after he scooped some yogurt and put into his mouth",
+    "review_status": "pending_visual_review"
+  },
+  {
+    "id": "3322503255_7",
+    "image": "3322503255_7.jpg",
+    "type": "DL",
+    "question": "where is this video taken",
+    "review_status": "pending_visual_review"
+  },
+  {
+    "id": "4488066715_2",
+    "image": "4488066715_2.jpg",
+    "type": "CW",
+    "question": "why does the baby bounce up and down when the bowl is taken away from him",
+    "review_status": "pending_visual_review"
+  },
+  {
+    "id": "6297019062_6",
+    "image": "6297019062_6.jpg",
+    "type": "TC",
+    "question": "what is the baby in purple chair doing as he sat on it",
+    "review_status": "pending_visual_review"
+  }
+]

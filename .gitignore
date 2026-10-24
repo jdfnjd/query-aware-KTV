@@ -1,0 +1,14 @@
+.runtime/
+.venv/
+venv/
+upstream/
+__pycache__/
+*.py[cod]
+*.lock
+logs/
+results_backup/
+research-status.txt
+e2e-status.txt
+.env
+.env.*
+*.tar.gz

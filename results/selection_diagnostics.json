@@ -1,0 +1,35 @@
+{
+  "hybrid4_neighbor": {
+    "questions": 400,
+    "mean_span_s": 33.65665971689336,
+    "median_adjacent_gap_s": 4.003999999999999,
+    "adjacent_pairs_under_0_1s": 28,
+    "adjacent_pairs_total": 2000,
+    "anchor_already_in_context": 0,
+    "vs_no_neighbor": {
+      "wins": 12,
+      "losses": 8
+    }
+  },
+  "hybrid4_top2": {
+    "questions": 400,
+    "mean_span_s": 34.14110969557466,
+    "median_adjacent_gap_s": 4.404426671362974,
+    "adjacent_pairs_under_0_1s": 135,
+    "adjacent_pairs_total": 2000
+  },
+  "ktv6": {
+    "questions": 400,
+    "mean_span_s": 36.58007438284468,
+    "median_adjacent_gap_s": 5.171833333333334,
+    "adjacent_pairs_under_0_1s": 0,
+    "adjacent_pairs_total": 2000
+  },
+  "query6": {
+    "questions": 400,
+    "mean_span_s": 15.60721845919428,
+    "median_adjacent_gap_s": 0.16683333333333472,
+    "adjacent_pairs_under_0_1s": 819,
+    "adjacent_pairs_total": 2000
+  }
+}
